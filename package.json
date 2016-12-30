@@ -1,12 +1,16 @@
 {
   "name": "hapi-react",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Hapi React app",
+  "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "concurrently \"npm run server\" \"cd client && npm start\"",
+    "server": "nodemon server.js",
     "test": "lab -c -L",
-    "test-cover": "lab -c -r html -o ./test/artifacts/coverage.html && open ./test/artifacts/coverage.html"
+    "test-cover": "lab -c -r html -o ./test/artifacts/coverage.html && open ./test/artifacts/coverage.html",
+    "build": "cd client && npm run build",
+    "test-client": "cd client && npm test"
   },
   "repository": {
     "type": "git",
@@ -26,13 +30,12 @@
     "glue": "4.x.x",
     "hapi": "15.x.x",
     "hoek": "4.x.x",
-    "jade": "1.x.x",
-    "vision": "4.x.x",
-    "visionary": "6.x.x"
+    "inert": "^4.1.0"
   },
   "devDependencies": {
     "code": "3.x.x",
     "lab": "11.x.x",
-    "nodemon": "1.x.x"
+    "nodemon": "1.x.x",
+    "concurrently": "^3.1.0"
   }
 }

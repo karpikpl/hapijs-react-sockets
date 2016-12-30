@@ -27,16 +27,7 @@ const manifest = {
     }],
     registrations: [
         {
-            plugin: 'vision'
-        },
-        {
-            plugin: {
-                register: 'visionary',
-                options: {
-                    engines: { jade: 'jade' },
-                    path: './server/web'
-                }
-            }
+            plugin: 'inert'
         },
         {
             plugin: {

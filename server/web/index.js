@@ -1,16 +1,22 @@
 'use strict';
+const Path = require('path');
 
 exports.register = function (server, options, next) {
 
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: function (request, reply) {
+   // Serve up all static content in build folder
+  server.route({
+    method: 'GET',
+    path: '/{path*}',
+    handler: {
+      directory: {
+        path: Path.join(__dirname, '../../client/build/'),
+        listing: false,
+        index: true
+      }
+    }
+  });
 
-            return reply.view('index');
-        }
-    });
-
+    console.log(`serving static content from ${Path.join(__dirname, '../../client/build/')}`);
 
     next();
 };
@@ -18,5 +24,5 @@ exports.register = function (server, options, next) {
 
 exports.register.attributes = {
     name: 'web',
-    dependencies: 'visionary'
+    dependencies: 'inert'
 };
