@@ -30,7 +30,9 @@
     "glue": "4.x.x",
     "hapi": "15.x.x",
     "hoek": "4.x.x",
-    "inert": "^4.1.0"
+    "inert": "^4.1.0",
+    "socket.io": "^1.7.2",
+    "socket.io-client": "^1.7.2"
   },
   "devDependencies": {
     "code": "3.x.x",

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import io from 'socket.io-client'
+let socket = io(`http://localhost:8080`)
+
 class App extends Component {
 
  constructor(props) {
@@ -25,6 +28,10 @@ class App extends Component {
     })
     .catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+
+    socket.on('chat message', (msg) => {
+        this.setState({message: msg});
     });
  }
 
