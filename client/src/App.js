@@ -3,6 +3,38 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+ constructor(props) {
+   super(props);
+   this.state = {message: 'hello'};
+ }
+
+ componentDidMount() {
+
+   fetch('/api').then((response) => {
+      if(response.ok) {
+        return response.json().then((json) => {
+          this.setState((state,props) => ({
+                message: state.message + ': ' + json.message
+              }
+            ));
+       });
+      } else {
+        console.log('Network response was not ok.');
+      }
+    })
+    .catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+ }
+
+ componentWillUnmount() {
+   this.setState((state,props) => ({
+      message: state.message + ' unmounted'
+     }
+   ));
+ }
+
   render() {
     return (
       <div className="App">
@@ -12,6 +44,9 @@ class App extends Component {
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+        <p className="App-intro">
+          {this.state.message}
         </p>
       </div>
     );
