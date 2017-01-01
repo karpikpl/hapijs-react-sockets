@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import io from 'socket.io-client'
-let socket = io(`http://localhost:8080`)
+let socket = io();
 
 class App extends Component {
 
